@@ -11,6 +11,9 @@ importers:
       hono:
         specifier: ^4.6.20
         version: 4.6.20
+      ics-to-json-extended:
+        specifier: ^1.1.4
+        version: 1.1.4
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -651,6 +654,9 @@ packages:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
 
+  ics-to-json-extended@1.1.4:
+    resolution: {integrity: sha512-5NtUG7GwN2uVp4Gg1++brlELbv/fkIU+N7rZGQCIKujQAf+l6LTjMjsNifma3bX2CrPcsxy2tf/9bqF/NWIDWA==}
+
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
     deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
@@ -772,6 +778,9 @@ packages:
     resolution: {integrity: sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==}
     engines: {node: '>=10'}
     hasBin: true
+
+  moment@2.30.1:
+    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -1807,6 +1816,10 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
+  ics-to-json-extended@1.1.4:
+    dependencies:
+      moment: 2.30.1
+
   inflight@1.0.6:
     dependencies:
       once: 1.4.0
@@ -1916,6 +1929,8 @@ snapshots:
   mkdirp@1.0.4: {}
 
   mkdirp@3.0.1: {}
+
+  moment@2.30.1: {}
 
   mri@1.2.0: {}
 
