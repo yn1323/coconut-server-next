@@ -1,35 +1,35 @@
 {
-  "version": "0.3.0",
-  "configurations": [
-    {
-      "command": "pnpm run start",
-      "name": "Run dev server",
-      "request": "launch",
-      "type": "node-terminal"
-    },
-    {
-      "command": "cd firebase/functions && npm run build:watch",
-      "name": "Launch functions:watch",
-      "request": "launch",
-      "type": "node-terminal"
-    },
-    {
-      "command": "cd firebase && firebase emulators:start",
-      "name": "Launch firebase emulators",
-      "request": "launch",
-      "type": "node-terminal"
-    },
-    {
-      "command": "cd firebase && firebase emulators:start --only functions",
-      "name": "Launch functions emulator only",
-      "request": "launch",
-      "type": "node-terminal"
-    },
-    {
-      "command": "cd firebase && firebase deploy",
-      "name": "Deploy firebase",
-      "request": "launch",
-      "type": "node-terminal"
-    }
-  ]
+	"version": "0.3.0",
+	"configurations": [
+		{
+			"command": "pnpm run start",
+			"name": "Run dev server",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"command": "cd firebase/functions && npm run build:watch",
+			"name": "Launch functions:watch",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"command": "cd firebase && firebase emulators:start",
+			"name": "Launch firebase emulators",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"command": "cd firebase && firebase emulators:start --only functions",
+			"name": "Launch functions emulator only",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"command": "cd firebase && firebase deploy",
+			"name": "Deploy firebase",
+			"request": "launch",
+			"type": "node-terminal"
+		}
+	]
 }
