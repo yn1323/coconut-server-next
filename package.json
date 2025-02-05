@@ -1,0 +1,16 @@
+{
+  "name": "coconut-server",
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel",
+    "lint": "pnpm biome lint ./src",
+    "lint:fix": "pnpm biome check --write ./src"
+  },
+  "dependencies": {
+    "hono": "^4.6.20"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "vercel": "^41.0.0"
+  }
+}
