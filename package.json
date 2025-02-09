@@ -3,6 +3,7 @@
 	"scripts": {
 		"start": "vercel dev",
 		"deploy": "vercel",
+		"test": "vitest",
 		"lint": "pnpm biome lint ./src",
 		"lint:fix": "pnpm biome check --write ./src"
 	},
@@ -12,6 +13,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"vercel": "^41.0.0"
+		"@line/bot-sdk": "^9.5.3",
+		"@types/node": "^22.13.1",
+		"vercel": "^41.0.0",
+		"vitest": "^3.0.5"
 	}
 }

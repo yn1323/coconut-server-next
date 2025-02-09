@@ -1,5 +1,7 @@
 import { Hono } from 'hono';
 import { handle } from 'hono/vercel';
+import { auth, isFromLine } from './src/middleware/auth';
+import { lineController } from './src/services/line/controller';
 
 export const config = {
 	runtime: 'edge',
@@ -7,17 +9,28 @@ export const config = {
 
 const app = new Hono().basePath('/api');
 
-const outlookPath = app.basePath('/outlook');
+app.use(auth);
 
-const linePath = app.basePath('/line');
+const outlook = app.basePath('/outlook');
 
-const googlePath = app.basePath('/google');
-const firebasePath = googlePath.basePath('/firebase');
-const googleMapPath = googlePath.basePath('/map');
-const spreadSheetPath = googlePath.basePath('/spreadsheet');
+const line = app.basePath('/line');
+
+const google = app.basePath('/google');
+const firestore = google.basePath('/firebase');
+const googleMap = google.basePath('/map');
+const spreadSheet = google.basePath('/spreadsheet');
 
 app.get('/', (c) => {
-	return c.json({ message: 'Hello Hono!' });
+	return c.json({ message: 'Hello Hono! from hogehoge!' });
+});
+
+line.post('/webhook', isFromLine, async (c) => {
+	const body = await c.req.json();
+	const header = c.req.header('User-Agent');
+
+	lineController({ body });
+
+	return c.json({ message: body, header });
 });
 
 export default handle(app);
