@@ -8,6 +8,12 @@
 		"lint:fix": "pnpm biome check --write ./src"
 	},
 	"dependencies": {
+		"@googlemaps/google-maps-services-js": "^3.4.0",
+		"date-fns": "^4.1.0",
+		"firebase-admin": "^13.1.0",
+		"google-auth-library": "^9.15.1",
+		"google-spreadsheet": "^4.1.4",
+		"googleapis": "^144.0.0",
 		"hono": "^4.6.20",
 		"ics-to-json-extended": "^1.1.4"
 	},

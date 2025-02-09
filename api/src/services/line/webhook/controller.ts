@@ -1,5 +1,13 @@
 import type { WebhookEvent } from '@line/bot-sdk';
-import { responseMessage } from './util';
+import { garbageClassificationListImages } from '../../google/spreadSheet/garbaseRule/constants';
+import { sendGarbageImages } from '../sendGarbageRule';
+import {
+	replyCalculatedRouteTime,
+	sendSelectionReply,
+	updateTravelMode,
+} from '../sendGoHomeTime';
+import { getAllSchedule, sendSchedule } from '../sendMeetingSchedule';
+import { responseMessage } from '../util';
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const getLineMessageRequestInfo = (events: any[]) => {
@@ -21,26 +29,30 @@ export const lineController = async ({
 	// 帰宅メッセージのやりとり受信
 	const isSelectedTheWayGoHome =
 		event.type === 'postback' && 'travelMode' in event.postBackData;
-	if (isSelectedTheWayGoHome) {
-		return;
-	}
 
 	const isMapSent =
 		event.type === 'message' && event.messageTypes === 'location';
+	if (isSelectedTheWayGoHome) {
+		return await updateTravelMode(event[0]);
+	}
 	if (isMapSent) {
-		return;
+		return await replyCalculatedRouteTime(event[0], { userId: event.userId });
 	}
 
 	if (event.text === '今日の打ち合わせは？') {
-		return;
+		const meetings = await getAllSchedule();
+		return await sendSchedule(meetings);
 	}
 
 	if (event.text === '今から帰る〜') {
-		return;
+		return await sendSelectionReply(event);
 	}
 
 	if (['ゴミ', 'ごみ'].some((t) => event.text.includes(t))) {
-		return;
+		return await sendGarbageImages(
+			event.userId,
+			garbageClassificationListImages,
+		);
 	}
 
 	return responseMessage({

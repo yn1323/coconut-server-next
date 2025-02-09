@@ -1,4 +1,4 @@
-import type { Client, Message } from '@line/bot-sdk';
+import { Client, type Message } from '@line/bot-sdk';
 
 type ResponseMessageProps = {
 	result: boolean;
@@ -10,10 +10,26 @@ export const responseMessage = ({ result, message }: ResponseMessageProps) => ({
 	message,
 });
 
+let lineClient: Client;
+
+export const getLineClient = () => {
+	if (!lineClient) {
+		lineClient = new Client({
+			channelAccessToken: process.env.LINE_ACCESS_TOKEN ?? '',
+			channelSecret: process.env.LINE_CHANNEL_SECRET ?? '',
+		});
+	}
+	return lineClient;
+};
+
+export const lineAllUsers = process.env.LINE_SEND_USERS?.split(',') ?? [];
+
 export const send = async (
 	text: string | string[],
-	{ sendUsers, client }: { sendUsers: string | string[]; client: Client },
+	{ sendUsers }: { sendUsers: string | string[] },
 ) => {
+	const client = getLineClient();
+
 	const lineBreakText = Array.isArray(text) ? text.join('\n') : text;
 	const sendMessage: Message = { type: 'text', text: lineBreakText };
 
